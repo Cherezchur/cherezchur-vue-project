@@ -1,13 +1,15 @@
 <template>
-  <header class="header">
-    <a href="#">
-      <img src="@/assets/image/logo-eye.png">
-    </a>
-  </header>
+  <div>
+    <Header />
+    <Slider />
+  </div>
 </template>
 
 <script>
+import Header from '../components/index/Header.vue';
+import Slider from '../components/index/Slider.vue';
 export default {
+  components: { Header, Slider }
 }
 </script>
 
@@ -44,6 +46,11 @@ export default {
   img {
     max-width: 100%;
     height: auto;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
   }
 
 </style>
