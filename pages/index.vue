@@ -1,56 +1,30 @@
 <template>
-  <div>
+  <main class="container" :style="styles">
     <Header />
     <Slider />
-  </div>
+    <Menu />
+  </main>
 </template>
 
 <script>
 import Header from '../components/index/Header.vue';
 import Slider from '../components/index/Slider.vue';
+import Menu from '../components/common/Menu.vue';
+
 export default {
-  components: { Header, Slider }
+  components: { Header, Slider, Menu },
+
+  setup() {
+    const isGorizontal = () => {
+
+    }
+  },
 }
 </script>
 
 <style lang='scss'>
-  body {
-    min-width: 320px;
-    max-width: 1920px;
-    margin: 0 auto;
-    padding: 0;
-
-    font-family: "PT Sans", "Arial", sans-serif;
-    font-size: 14px;
-    line-height: 24px;
-    text-transform: uppercase;
-    text-align: center;
-  }
-
-  .visually-hidden:not(:focus):not(:active) {
-    position: absolute;
-
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-
-    white-space: nowrap;
-
-    clip-path: inset(100%);
-    clip: rect(0 0 0 0);
-    overflow: hidden;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-  }
+.container {
+  display: flex;
+}
 
 </style>

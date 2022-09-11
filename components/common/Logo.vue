@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link class='logo' to='/'>
+  <nuxt-link no-prefetch class='logo' to='/' title="to main page">
 		<img src='@/assets/image/icons/logo-eye.svg'>
 	</nuxt-link>
 </template>

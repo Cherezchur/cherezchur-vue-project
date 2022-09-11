@@ -1,13 +1,16 @@
 <template>
-  <section class='slider'>
-    
+  <section class="slider">
+    <img class="slider__img" src="@/assets/image/banner/slide-1_ilad.jpg">
   </section>
 </template>
 
 <style lang='scss' scoped>
 .slider {
-  width: 1280px;
-  height: 1080px;
-  background-color: aquamarine;
+  min-height: 100vh;
+
+  &__img {
+    display:block;
+    height: 100vh;
+  }
 }
 </style>>

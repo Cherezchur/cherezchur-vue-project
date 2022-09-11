@@ -6,13 +6,16 @@
 				<Social />
 				<Like />
 			</div>
-			<Menu />
 		</nav>
 	</header>
 </template>
 
 <style lang="scss" scoped>
 .header {
+	position: absolute;
+	width: 100%;
+	height: 100px;
+
 	&__container {
 		display: flex;
 		justify-content: space-between;

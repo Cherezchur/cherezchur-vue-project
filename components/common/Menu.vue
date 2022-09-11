@@ -1,11 +1,13 @@
 <template>
-  <div class='menu'>
-    <ul class='menu__list'>
-      <li v-for='item of MENU_LINKS' :key='item.id'>
-        <a href='#' @click.prevent="goToGallery(item.pathName)">{{item.name}}</a>
-      </li>
-    </ul>
-  </div>
+  <section class='menu'>
+    <nav>
+      <ul class='menu__list'>
+        <li v-for='item of MENU_LINKS' :key='item.id'>
+          <a href='#' @click.prevent="goToGallery(item.pathName)">{{item.name}}</a>
+        </li>
+      </ul>
+    </nav>
+  </section>
 </template>
 
 <script>
