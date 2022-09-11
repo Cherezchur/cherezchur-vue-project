@@ -1,27 +1,48 @@
 <template>
-  <div class="social">
-    <ul class="social__list">
-      <li class="social__item">
-        <img src="@/assets/image/icons/tg-hide.svg">
-        <span class="visually-hidden">telegram</span>
-      </li>
-      <li class="social__item">
-        <img src="@/assets/image/icons/insta-hide.svg">
-        <span class="visually-hidden">instagram</span>
-      </li>
-      <li class="social__item">
-        <img src="@/assets/image/icons/tblr-hide.svg">
-        <span class="visually-hidden">tumblr</span>
-      </li>
-      <li class="social__item">
-        <img src="@/assets/image/icons/vk-hide.svg">
-        <span class="visually-hidden">vk</span>
+  <div class='social'>
+    <ul class='social__list'>
+      <li class='social__item' v-for='social of SOCIALS' :key='social.id'>
+        <img :src='(social.hideSvg)'>
+        <span class='visually-hidden'>{{social.name}}</span>
       </li>
     </ul>
   </div>
 </template>
 
-<style lang="scss" scoped>
+<script>
+export default {
+  setup() {
+    let id = 0;
+    const SOCIALS = [
+      {
+        id: id++,
+        name: 'telegram',
+        hideSvg: require('@/assets/image/icons/tg-hide.svg') 
+      },
+      {
+        id: id++,
+        name: 'instagram',
+        hideSvg: require('@/assets/image/icons/insta-hide.svg')
+      },
+      {
+        id: id++,
+        name: 'tumblr',
+        hideSvg: require('@/assets/image/icons/tblr-hide.svg')
+      },
+      {
+        id: id++,
+        name: 'vk',
+        hideSvg: require('@/assets/image/icons/vk-hide.svg')
+      },
+    ]
+    return {
+      SOCIALS
+    }
+  }
+}
+</script>>
+
+<style lang='scss' scoped>
 .social {
   margin: auto 0;
 

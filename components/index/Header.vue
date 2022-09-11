@@ -6,6 +6,7 @@
 				<Social />
 				<Like />
 			</div>
+			<Menu />
 		</nav>
 	</header>
 </template>
