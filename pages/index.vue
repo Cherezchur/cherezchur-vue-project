@@ -13,9 +13,19 @@ import Menu from '../components/common/Menu.vue';
 
 export default {
   components: { Header, Slider, Menu },
+
   setup() {
 
-    console.log(window.innerWidth)
+    const isGorizontal = () => {
+      const windowWidth = window.innerWidth - 100;
+      const windowHeight = windowHeight;
+
+      return windowWidth > windowHeight ? true : false; 
+    }
+
+    return {
+      isGorizontal
+    }
   }
 
   // setup() {
@@ -25,11 +35,6 @@ export default {
   //   }
   //   return matchHeight;
   // },
-  
-  // mounted () {
-  //   this.matchHeight()
-  // }
-
 }
 </script>
 
