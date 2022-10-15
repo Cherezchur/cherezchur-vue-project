@@ -1,0 +1,13 @@
+@keyframes circle { 
+  100% { rotate:60deg;transform: rotate(-0.16turn);width:15px; border-radius: 2.5px;}
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(60deg);
+  }
+}

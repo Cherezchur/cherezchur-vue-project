@@ -18,11 +18,13 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '~assets/css/main.css'
+    '~assets/scss/main.scss'
   ],
 
   styleResources: {
     scss: [
+      '~assets/scss/_font.scss',
+      '~assets/scss/_grid.scss',
       '~assets/scss/variables.scss',
       '~assets/scss/mixin.scss',
     ]
@@ -45,6 +47,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/style-resources',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
