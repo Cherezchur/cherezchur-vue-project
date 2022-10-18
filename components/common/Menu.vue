@@ -1,20 +1,42 @@
 <template>
   <div class='menu'>
-    <button class='menu__control' :class='{ menu__control_active: isActive }' @click='burgerButtonHandler()'>
+    <button 
+      class='menu__control' 
+      :class='{ menu__control_active: isActive }' 
+      @click="menuHandler"
+    >
       <span></span>
     </button>
     <nav class='menu__list'>
-      <a href='#' id='login' class='menu__item' :class='{ menu__item_active: isActive }'>
+      <a 
+        href='#' 
+        id='login' 
+        class='menu__item' 
+        :class='{ menu__item_active: isActive }'
+        @click.prevent="modalShow"
+      >
         <span>Login</span>
         <img src='@/assets/image/icons/heart-disabled--dark.svg'>
       </a>
-      <a href='#' id='message' class='menu__item' :class='{ menu__item_active: isActive }'>
+      <a 
+        href='#' 
+        id='message' 
+        class='menu__item' 
+        :class='{ menu__item_active: isActive }'
+      >
         <span>Message</span>
         <img src='@/assets/image/icons/heart-disabled--dark.svg'>
       </a>
-      <nuxt-link no-prefetch id='likes' class='menu__item like' :class='{ menu__item_active: isActive }' to='/gallery/likes' title='like pins'>
+      <nuxt-link 
+        no-prefetch 
+        id='likes' 
+        class='menu__item like' 
+        :class='{ menu__item_active: isActive }' 
+        to='/gallery/likes' 
+        title='like pins'
+      >
         <span>
-          Likes galery
+          Likes
         </span>
         <img src='@/assets/image/icons/heart-disabled--dark.svg'>
       </nuxt-link>
@@ -26,16 +48,21 @@
   import { ref } from 'vue';
 
   export default {
+    methods: { 
+      modalShow() {
+        this.$emit('modalShow');
+      }
+    },
     setup() {
       const isActive = ref(false);
-      const burgerButtonHandler = () => isActive.value = !isActive.value
+      const menuHandler = () => isActive.value = !isActive.value
 
       return {
-        burgerButtonHandler,
+        menuHandler,
         isActive
       }
     }
-}
+  }
   
 </script>
 
@@ -103,11 +130,21 @@
     width: 40px;
     background-color: $menu-icon;
     border-radius: 20px;
+    &:nth-child(1) {
+        transition: 0.2s;
+      }
+    &:nth-child(2) {
+      transition: 0.35s;
+    }
+    &:nth-child(3) {
+      transition: 0.5s;
+    }
     span { 
       position: absolute;
+      left: -10px;
       opacity: 0;
       z-index: 1;
-      width: 100px;
+      width: 40px;
       height: 40px;
       background-color: $menu-icon;
       border-radius: 20px;
@@ -117,15 +154,6 @@
       text-align: start;
       padding-left: 10px;
     }
-    &:nth-child(1) {
-        transition: 0.2s;
-      }
-      &:nth-child(2) {
-        transition: 0.35s;
-      }
-      &:nth-child(3) {
-        transition: 0.5s;
-      }
     &_active {
       opacity: 1;
       &:nth-child(1) {
@@ -142,21 +170,22 @@
           span { 
             opacity: 1;
             width: 100px;
-            transform: translate(-40px, 0);
+            transform: translate(-60px, 0px);
           }
         }
         &:nth-child(2) {
+          z-index: 1;
           span { 
             opacity: 1;
             width: 120px;
-            transform: translate(-50px, 0);
+            transform: translate(-80px, 0px);
           }
         }
         &:nth-child(3) {
           span { 
             opacity: 1;
-            width: 140px;
-            transform: translate(-60px, 0);
+            width: 110px;
+            transform: translate(-70px, 0px);
           }
         }
       }

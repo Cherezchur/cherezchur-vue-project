@@ -1,9 +1,17 @@
 <template>
   <main id="main">
+    <Slider />
   </main>
 </template>
 
 <script>
+import Slider from '../components/index/Slider.vue'
+
+export default {
+  components: {
+    Slider,
+  }
+}
 </script>
 
 <style lang='scss'>
