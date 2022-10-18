@@ -31,10 +31,27 @@
 <script>
 export default {
   name: 'Modal',
+  props: {
+    show: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  mounted() {
+    window.addEventListener('keydown', this.escCloseModal);
+  },
+  destroy() {
+    window.removeEventListener('keydown', this.escCloseModal);
+  },
   methods: {
     closeModal() {
       this.$emit('close');
-    }
+    },
+    escCloseModal(e) {
+      if (this.show && e.key === 'Escape') {
+        this.closeModal();
+      }
+    },
   }
 }
 </script>

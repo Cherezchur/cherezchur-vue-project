@@ -7,6 +7,7 @@
     <nuxt />
     <Modal 
       v-show="isShowModal"
+      :show="isShowModal"
       @close="modalToogle"
     />
   </div>
