@@ -10,19 +10,18 @@
     <nav class='menu__list'>
       <a 
         href='#' 
-        id='login' 
         class='menu__item' 
         :class='{ menu__item_active: isActive }'
-        @click.prevent="modalShow"
+        @click.prevent="modalShowClick('login')"
       >
         <span>Login</span>
         <img src='@/assets/image/icons/heart-disabled--dark.svg'>
       </a>
       <a 
         href='#' 
-        id='message' 
         class='menu__item' 
         :class='{ menu__item_active: isActive }'
+        @click.prevent="modalShowClick('message')"
       >
         <span>Message</span>
         <img src='@/assets/image/icons/heart-disabled--dark.svg'>
@@ -48,14 +47,20 @@
   import { ref } from 'vue';
 
   export default {
+    props: {
+      modalShow: {
+        type: Function,
+        default: () => ''
+      }
+    },
     methods: { 
-      modalShow() {
-        this.$emit('modalShow');
+      modalShowClick(id) {
+        this.modalShow(id);
       }
     },
     setup() {
       const isActive = ref(false);
-      const menuHandler = () => isActive.value = !isActive.value
+      const menuHandler = () => isActive.value = !isActive.value;
 
       return {
         menuHandler,
@@ -73,6 +78,7 @@
   display: flex;
   align-items: center;
   position: relative;
+
   &__control {
     position: relative;
     padding: 0;
@@ -82,6 +88,7 @@
     border-radius: 50%;
     border: none;
     z-index: 1;
+
     span,
     span::before,
     span::after {
@@ -94,6 +101,7 @@
       left: calc(50% - 3px);
       transition: 0.3s;
     }
+
     span::before,
     span::after {
       content: '';
@@ -104,6 +112,7 @@
     span::after {
       transform: translateX(10px);
     }
+
     &_active {
       span::before,
       span::after {
@@ -118,6 +127,7 @@
       }
     }
   }
+
   &__item {
     opacity: 0;
     display: flex;
@@ -130,6 +140,7 @@
     width: 40px;
     background-color: $menu-icon;
     border-radius: 20px;
+
     &:nth-child(1) {
         transition: 0.2s;
       }
@@ -139,6 +150,7 @@
     &:nth-child(3) {
       transition: 0.5s;
     }
+
     span { 
       position: absolute;
       left: -10px;
@@ -154,6 +166,7 @@
       text-align: start;
       padding-left: 10px;
     }
+
     &_active {
       opacity: 1;
       &:nth-child(1) {

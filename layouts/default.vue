@@ -1,15 +1,32 @@
 <template>
-  <div class='layout-container'>
-    <header class='layout-header'>
+  <div class='layout_container'>
+    <header class='layout_header'>
       <Logo />
-      <Menu @modalShow='modalToogle'/>
+      <Menu :modalShow='modalToogle'/>
     </header>
     <nuxt />
     <Modal 
       v-show="isShowModal"
       :show="isShowModal"
       @close="modalToogle"
-    />
+    >
+      <template v-if="linkId === 'login'" #header>
+        Please log in
+      </template>
+      <template v-else-if="linkId === 'message'" #header>
+        Please message write
+      </template>
+      <template v-if="linkId === 'login'" #body>
+        <input type="email" value="Your email">
+        <input type="password" value="Your password">
+      </template>
+      <template v-else-if="linkId === 'message'" #body>
+        <!--auitorization-->
+        <!-- <input type="name" value="Your name">
+        <input type="email" value="Your email"> -->
+        <input type="text" value="write message ...">
+      </template>
+    </Modal>
   </div>
 </template>
 
@@ -28,11 +45,17 @@ export default {
   },
   setup() {
     let isShowModal = ref(false);
-    const modalToogle = () => isShowModal.value = !isShowModal.value;
+    let linkId = ref('');
+    
+    const modalToogle = (id) => {
+      linkId.value = id;
+      isShowModal.value = !isShowModal.value;
+    }
 
     return {
       isShowModal,
       modalToogle,
+      linkId
     }
   }
 }
@@ -40,10 +63,11 @@ export default {
 
 <style lang='scss' scoped>
 .layout {
-  &-container {
+  &_container {
     background-color: rgba($color: black, $alpha: 0.4);
   }
-  &-header {
+
+  &_header {
     display: flex;
     justify-content: space-between;
     position: fixed;

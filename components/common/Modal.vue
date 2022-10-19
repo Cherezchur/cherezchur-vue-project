@@ -1,41 +1,50 @@
 <template>
-  <div class="modal" @click="closeModal">
+  <transition name="modal">
     <div 
-      class="modal_backdrop"
+      class="modal" 
+      @click="closeModal"
     >
-      <div class="modal_container">
-        <div 
-          class="modal_content"
-          @click.stop
-        >
-          <header class="modal_header">
-            Modal title
-          </header>
-          <section class="modal_body">
-            Modal body
-          </section>
-          <footer class="modal_footer">
-            <button 
-              type="button"
-              @click="closeModal"
-            >
-              close
-            </button>
-          </footer>
+      <div  class="modal_backdrop">
+        <div class="modal_container">
+          <div 
+            class="modal_content"
+            @click.stop
+          >
+            <header class="modal_header">
+              <slot name="header">
+                Modal title
+              </slot>
+            </header>
+            <section class="modal_body">
+              <slot name="body">
+                Modal body
+              </slot>
+            </section>
+            <footer class="modal_footer">
+              <slot name="footer" />
+              <button 
+                type="button"
+                @click="closeModal"
+              >
+                close
+              </button>
+            </footer>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
+
 export default {
   name: 'Modal',
   props: {
     show: {
       type: Boolean,
       default: false,
-    },
+    }
   },
   mounted() {
     window.addEventListener('keydown', this.escCloseModal);
@@ -57,6 +66,14 @@ export default {
 </script>
 
 <style lang="scss">
+.modal-enter,
+.modal-leave-to {
+  opacity: 0;
+}
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease;
+}
 .modal {
   position: absolute;
   top: 0;
