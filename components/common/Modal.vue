@@ -11,9 +11,15 @@
             @click.stop
           >
             <header class="modal_header">
-              <slot name="header">
+              <h2 v-if="modalOption === 'login'">
+                Please log in
+              </h2>
+              <h2 v-else-if="modalOption === 'message'">
+                Please message write
+              </h2>
+              <!-- <slot name="header">
                 Modal title
-              </slot>
+              </slot> -->
             </header>
             <section class="modal_body">
               <slot name="body">
@@ -24,7 +30,7 @@
               <slot name="footer" />
               <button 
                 type="button"
-                @click="closeModal"
+                @click="closeModal(modalOption)"
               >
                 close
               </button>
@@ -44,6 +50,10 @@ export default {
     show: {
       type: Boolean,
       default: false,
+    },
+    modalOption: {
+      type: String,
+      default: 'login'
     }
   },
   mounted() {
@@ -54,7 +64,7 @@ export default {
   },
   methods: {
     closeModal() {
-      this.$emit('close');
+      this.$emit('close', modalOption);
     },
     escCloseModal(e) {
       if (this.show && e.key === 'Escape') {

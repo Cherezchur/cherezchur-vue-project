@@ -8,9 +8,10 @@
     <Modal 
       v-show="isShowModal"
       :show="isShowModal"
+      :modalOption="linkId"
       @close="modalToogle"
     >
-      <template v-if="linkId === 'login'" #header>
+      <!-- <template v-if="linkId === 'login'" #header>
         Please log in
       </template>
       <template v-else-if="linkId === 'message'" #header>
@@ -21,11 +22,8 @@
         <input type="password" value="Your password">
       </template>
       <template v-else-if="linkId === 'message'" #body>
-        <!--auitorization-->
-        <!-- <input type="name" value="Your name">
-        <input type="email" value="Your email"> -->
         <input type="text" value="write message ...">
-      </template>
+      </template> -->
     </Modal>
   </div>
 </template>
@@ -47,8 +45,9 @@ export default {
     let isShowModal = ref(false);
     let linkId = ref('');
     
-    const modalToogle = (id) => {
-      linkId.value = id;
+    const modalToogle = (linkName) => {
+      console.log(linkName);
+      linkId.value = linkName;
       isShowModal.value = !isShowModal.value;
     }
 

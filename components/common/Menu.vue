@@ -53,17 +53,14 @@
         default: () => ''
       }
     },
-    methods: { 
-      modalShowClick(id) {
-        this.modalShow(id);
-      }
-    },
-    setup() {
+    setup(props) {
       const isActive = ref(false);
       const menuHandler = () => isActive.value = !isActive.value;
+      const modalShowClick = (linkName) => props.modalShow(linkName);
 
       return {
         menuHandler,
+        modalShowClick,
         isActive
       }
     }
