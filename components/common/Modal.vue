@@ -2,7 +2,7 @@
   <transition name="modal">
     <div 
       class="modal" 
-      @click="closeModal"
+      @click="modalClose(modalOption)"
     >
       <div  class="modal_backdrop">
         <div class="modal_container">
@@ -30,7 +30,7 @@
               <slot name="footer" />
               <button 
                 type="button"
-                @click="closeModal(modalOption)"
+                @click="modalClose(modalOption)"
               >
                 close
               </button>
@@ -45,7 +45,6 @@
 <script>
 
 export default {
-  name: 'Modal',
   props: {
     show: {
       type: Boolean,
@@ -54,24 +53,24 @@ export default {
     modalOption: {
       type: String,
       default: 'login'
+    },
+    closeModal: {
+      type: Function,
+      default: () => ''
     }
   },
-  mounted() {
-    window.addEventListener('keydown', this.escCloseModal);
+  setup(props) {
+    const modalClose = (modalOption) => props.closeModal(modalOption);
+    return {
+      modalClose
+    }
   },
-  destroy() {
-    window.removeEventListener('keydown', this.escCloseModal);
-  },
-  methods: {
-    closeModal() {
-      this.$emit('close', modalOption);
-    },
-    escCloseModal(e) {
-      if (this.show && e.key === 'Escape') {
-        this.closeModal();
-      }
-    },
-  }
+  // onMounted() {
+  //   window.addEventListener('keydown', modalClose);
+  // },
+  // onDestroy() {
+  //    window.removeEventListener('keydown', modalClose);
+  // }
 }
 </script>
 

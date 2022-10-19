@@ -9,7 +9,7 @@
       v-show="isShowModal"
       :show="isShowModal"
       :modalOption="linkId"
-      @close="modalToogle"
+      :closeModal="modalToogle"
     >
       <!-- <template v-if="linkId === 'login'" #header>
         Please log in
