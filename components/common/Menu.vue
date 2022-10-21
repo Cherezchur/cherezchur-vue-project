@@ -3,7 +3,7 @@
     <button 
       class='menu__control' 
       :class='{ menu__control_active: isActive }' 
-      @click="menuHandler"
+      @click="menuTrigger"
     >
       <span></span>
     </button>
@@ -43,28 +43,24 @@
   </div>
 </template>
 
-<script>
-  import { ref } from 'vue';
+<script setup>
+import { ref } from 'vue';
 
-  export default {
-    props: {
-      modalShow: {
-        type: Function,
-        default: () => ''
-      }
-    },
-    setup(props) {
-      const isActive = ref(false);
-      const menuHandler = () => isActive.value = !isActive.value;
-      const modalShowClick = (linkName) => props.modalShow(linkName);
-
-      return {
-        menuHandler,
-        modalShowClick,
-        isActive
-      }
-    }
+const props = defineProps({
+  modalShow: {
+    type: Function,
+    default: () => ''
   }
+})
+
+const isActive = ref(false);
+const menuTrigger = () => {
+  isActive.value = !isActive.value;
+  if(isActive.value === true) {
+    setTimeout(menuTrigger, 10000)
+  }
+}
+const modalShowClick = (linkName) => props.modalShow(linkName);
   
 </script>
 
@@ -90,12 +86,12 @@
     span::before,
     span::after {
       position: absolute;
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 20px;
       background-color: $menu-icon;
-      top: calc(50% - 3px);
-      left: calc(50% - 3px);
+      top: calc(50% - 2.5px);
+      left: calc(50% - 2.5px);
       transition: 0.3s;
     }
 
@@ -113,14 +109,14 @@
     &_active {
       span::before,
       span::after {
-        border-radius: 3px;
+        border-radius: 2.5px;
         width: 23px;
       }
       span::before {
-        transform: rotate(45deg) translate(-6px, 6px);
+        transform: rotate(45deg) translate(-5.5px, 7px);
       }
       span::after {
-        transform: rotate(-45deg) translate(-6px, -6px);
+        transform: rotate(-45deg) translate(-7px, -5.5px);
       }
     }
   }

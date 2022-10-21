@@ -11,52 +11,23 @@
       :modalOption="linkId"
       :closeModal="modalToogle"
     >
-      <!-- <template v-if="linkId === 'login'" #header>
-        Please log in
-      </template>
-      <template v-else-if="linkId === 'message'" #header>
-        Please message write
-      </template>
-      <template v-if="linkId === 'login'" #body>
-        <input type="email" value="Your email">
-        <input type="password" value="Your password">
-      </template>
-      <template v-else-if="linkId === 'message'" #body>
-        <input type="text" value="write message ...">
-      </template> -->
     </Modal>
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
 
 import Logo from '../components/common/Logo.vue';
 import Menu from '../components/common/Menu.vue';
 import Modal from '../components/common/Modal.vue';
 
-export default {
-  components: {
-    Logo,
-    Menu,
-    Modal
-  },
-  setup() {
-    let isShowModal = ref(false);
-    let linkId = ref('');
-    
-    const modalToogle = (linkName) => {
-      console.log(linkName);
-      linkId.value = linkName;
-      isShowModal.value = !isShowModal.value;
-    }
+let isShowModal = ref(false);
+let linkId = ref('');
 
-    return {
-      isShowModal,
-      modalToogle,
-      linkId
-    }
-  }
+const modalToogle = (linkName) => {
+  linkId.value = linkName;
+  isShowModal.value = !isShowModal.value;
 }
 </script>
 

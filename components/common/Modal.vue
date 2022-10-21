@@ -11,30 +11,27 @@
             @click.stop
           >
             <header class="modal_header">
-              <h2 v-if="modalOption === 'login'">
-                Please log in
-              </h2>
-              <h2 v-else-if="modalOption === 'message'">
-                Please message write
-              </h2>
-              <!-- <slot name="header">
-                Modal title
-              </slot> -->
-            </header>
-            <section class="modal_body">
-              <slot name="body">
-                Modal body
-              </slot>
-            </section>
-            <footer class="modal_footer">
-              <slot name="footer" />
               <button 
                 type="button"
                 @click="modalClose(modalOption)"
               >
                 close
               </button>
-            </footer>
+              <h2 v-if="modalOption === 'login'">
+                Please log in
+              </h2>
+              <h2 v-else-if="modalOption === 'message'">
+                Please message write
+              </h2>
+            </header>
+            <section class="modal_body">
+              <form v-if="modalOption === 'login'">
+                <input type="text" value="plese write login" />
+              </form>
+              <form v-else-if="modalOption === 'message'">
+                <textarea type="text">plese write message</textarea>
+              </form>
+            </section>
           </div>
         </div>
       </div>
@@ -42,36 +39,41 @@
   </transition>
 </template>
 
-<script>
+<script setup>
 
-export default {
-  props: {
-    show: {
-      type: Boolean,
-      default: false,
-    },
-    modalOption: {
-      type: String,
-      default: 'login'
-    },
-    closeModal: {
-      type: Function,
-      default: () => ''
-    }
+import {onMounted, onUnmounted} from 'vue';
+
+const props = defineProps({
+  show: {
+    type: Boolean,
+    default: false,
   },
-  setup(props) {
-    const modalClose = (modalOption) => props.closeModal(modalOption);
-    return {
-      modalClose
-    }
+  modalOption: {
+    type: String,
+    default: 'login'
   },
-  // onMounted() {
-  //   window.addEventListener('keydown', modalClose);
-  // },
-  // onDestroy() {
-  //    window.removeEventListener('keydown', modalClose);
-  // }
+  closeModal: {
+    type: Function,
+    default: () => ''
+  }
+})
+
+const modalClose = (modalOption) => props.closeModal(props.modalOption);
+
+const escCloseModal = (e) => {
+  if (props.show && e.key === 'Escape') {
+    props.closeModal(props.modalOption);
+  }
 }
+
+onMounted(() => {
+  window.addEventListener('keydown', escCloseModal);
+});
+
+onUnmounted(() => {
+    window.removeEventListener('keydown', escCloseModal);
+});
+
 </script>
 
 <style lang="scss">
