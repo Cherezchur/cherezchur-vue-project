@@ -20,17 +20,17 @@
               <h2 v-if="modalOption === 'login'">
                 Please log in
               </h2>
+              <h2 v-else-if="modalOption === 'log out'">
+                Please log in
+              </h2>
               <h2 v-else-if="modalOption === 'message'">
                 Please message write
               </h2>
             </header>
             <section class="modal_body">
-              <form v-if="modalOption === 'login'">
-                <input type="text" value="plese write login" />
-              </form>
-              <form v-else-if="modalOption === 'message'">
-                <textarea type="text">plese write message</textarea>
-              </form>
+              <Login v-if="modalOption === 'login'" />
+              <Logout v-else-if="modalOption === 'logout'" />
+              <Message v-if="modalOption === 'message'" />
             </section>
           </div>
         </div>
@@ -42,6 +42,10 @@
 <script setup>
 
 import {onMounted, onUnmounted} from 'vue';
+
+import Login from './Login.vue';
+import Logout from './Logout.vue'
+import Message from './Message.vue';
 
 const props = defineProps({
   show: {
