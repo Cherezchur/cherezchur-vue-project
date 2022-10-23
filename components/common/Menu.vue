@@ -44,7 +44,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref} from 'vue';
 
 const props = defineProps({
   modalShow: {
@@ -54,12 +54,21 @@ const props = defineProps({
 })
 
 const isActive = ref(false);
+let timerId = ''
+
 const menuTrigger = () => {
   isActive.value = !isActive.value;
-  if(isActive.value === true) {
-    setTimeout(menuTrigger, 10000)
+
+  if(isActive.value) {
+    let timer = setTimeout(() => {
+      isActive.value = !isActive.value
+    }, 10000)
+    timerId = timer;
+  } else {
+    clearTimeout(timerId);
   }
 }
+
 const modalShowClick = (linkName) => props.modalShow(linkName);
   
 </script>

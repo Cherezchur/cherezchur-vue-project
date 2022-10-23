@@ -10,16 +10,20 @@
             class="modal_content"
             @click.stop
           >
+            <button 
+              type="button"
+              @click="modalClose(modalOption)"
+            >
+            close
+            </button>
             <header class="modal_header">
-              <button 
-                type="button"
-                @click="modalClose(modalOption)"
-              >
-                close
-              </button>
               <h2 v-if="modalOption === 'login'">
                 Please log in
               </h2>
+              <h2 v-else-if="modalOption === 'registration'">
+                Please registrer
+              </h2>
+              <!--personal account-->
               <h2 v-else-if="modalOption === 'log out'">
                 Please log in
               </h2>
@@ -28,7 +32,11 @@
               </h2>
             </header>
             <section class="modal_body">
-              <Login v-if="modalOption === 'login'" />
+              <Login 
+                :modalUpdateHandler="modalUpdate" v-if="modalOption === 'login'" 
+              />
+              <Registration v-else-if="modalOption === 'registration'" />
+              <!--user personal-->
               <Logout v-else-if="modalOption === 'logout'" />
               <Message v-if="modalOption === 'message'" />
             </section>
@@ -41,7 +49,7 @@
 
 <script setup>
 
-import {onMounted, onUnmounted} from 'vue';
+import {onMounted, onUnmounted, onUpdated} from 'vue';
 
 import Login from './Login.vue';
 import Logout from './Logout.vue'
@@ -59,10 +67,16 @@ const props = defineProps({
   closeModal: {
     type: Function,
     default: () => ''
+  },
+  modalUpdate: {
+    type: Function,
+    default: () => ''
   }
 })
 
 const modalClose = (modalOption) => props.closeModal(props.modalOption);
+
+const modalUpdate = (option) => props.modalUpdate(option)
 
 const escCloseModal = (e) => {
   if (props.show && e.key === 'Escape') {
