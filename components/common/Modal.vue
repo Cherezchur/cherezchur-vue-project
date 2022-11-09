@@ -4,41 +4,49 @@
       class="modal" 
       @click="modalClose(modalOption)"
     >
-      <div  class="modal_backdrop">
-        <div class="modal_container">
+      <div  class="modal__backdrop">
+        <div class="modal__container">
           <div 
-            class="modal_content"
+            class="modal__content"
             @click.stop
           >
-            <button 
-              type="button"
-              @click="modalClose(modalOption)"
-            >
-            close
-            </button>
-            <header class="modal_header">
-              <h2 v-if="modalOption === 'login'">
-                Please log in
-              </h2>
-              <h2 v-else-if="modalOption === 'registration'">
-                Please registrer
-              </h2>
-              <!--personal account-->
-              <h2 v-else-if="modalOption === 'log out'">
-                Please log in
-              </h2>
-              <h2 v-else-if="modalOption === 'message'">
-                Please message write
-              </h2>
-            </header>
-            <section class="modal_body">
-              <Login 
-                :modalUpdateHandler="modalUpdate" v-if="modalOption === 'login'" 
+            <section class="modal__header">
+              <button
+                class="modal__close"
+                type="button"
+                @click="modalClose(modalOption)"
+              >
+              close
+              </button>
+              <header class="modal__title">
+                <h2 v-if="modalOption === 'login'">
+                  Please log in
+                </h2>
+                <h2 v-else-if="modalOption === 'registration'">
+                  Please registrer
+                </h2>
+                <h2 v-else-if="modalOption === 'log out'">
+                  Please log in
+                </h2>
+                <h2 v-else-if="modalOption === 'message'">
+                  Please message write
+                </h2>
+              </header>
+            </section>
+            <section class="modal__body">
+              <Login
+                v-if="modalOption === 'login'" 
+                :modalUpdateHandler="modalUpdate" 
               />
-              <Registration v-else-if="modalOption === 'registration'" />
-              <!--user personal-->
-              <Logout v-else-if="modalOption === 'logout'" />
-              <Message v-if="modalOption === 'message'" />
+              <Registration 
+                v-else-if="modalOption === 'registration'" 
+              />
+              <Logout 
+                v-else-if="modalOption === 'logout'" 
+              />
+              <Message 
+                v-if="modalOption === 'message'" 
+              />
             </section>
           </div>
         </div>
@@ -95,14 +103,6 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss">
-.modal-enter,
-.modal-leave-to {
-  opacity: 0;
-}
-.modal-enter-active,
-.modal-leave-active {
-  transition: opacity 0.3s ease;
-}
 .modal {
   position: absolute;
   top: 0;
@@ -110,7 +110,18 @@ onUnmounted(() => {
   height: 100%;
   width: 100%;
 
-  &_backdrop {
+  //animation
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+  }
+
+  &-enter-active,
+  &-leave-active {
+    transition: opacity 0.3s ease;
+  }
+
+  &__backdrop {
     position: fixed;
       top: 0;
       bottom: 0;
@@ -123,7 +134,7 @@ onUnmounted(() => {
       z-index: 5;
   }
 
-  &_container {
+  &__container {
     position: fixed;
     top: 0;
     right: 0;
@@ -133,7 +144,7 @@ onUnmounted(() => {
     margin: 16px;
   }
 
-  &_content {
+  &__content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -149,18 +160,38 @@ onUnmounted(() => {
     box-sizing: border-box;
   }
 
-  &_header {
-    padding-bottom: 16px;
-    font-size: 25px;
+  &__header {
+    position: relative;
+    margin-bottom: 25px;
     text-align: center;
   }
 
-  &_footer {
+  &__title h2 {
+    margin: 0;
+    font-size: 25px;
+  }
+
+  &__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  &__footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 80px;
     text-align: center;
   }
+}
+
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease;
+}
+.modal {
+  
 }
 </style>
