@@ -10,7 +10,7 @@
           :autocomplete="'current-login'"  
           :placeholder="'Please write login'"
           :valid="false"
-          @input-change="inputChange"
+          @change-input="changeInput"
         />
         <!-- <span
           class="login__validation"
@@ -26,7 +26,6 @@
           id="password" 
           name="password" 
           type="password"
-          v-model="formData.password"
           autocomplete="current-password"             
           placeholder="Please write password" 
         />
@@ -51,8 +50,8 @@
         </a>
       </div>
       <button
-        type="submit"
-        @click.prevent="$emit('modalUpdate', 'registration')"
+        type="button"
+        @click="$emit('modal-update', 'registration')"
       >registration
       </button>
     </div>
@@ -64,8 +63,8 @@
 import Input from './Input'
 
 import { ref, reactive, computed } from 'vue'
-import useVuelidate from '@vuelidate/core'
-import { required, minLength } from '@vuelidate/validators'
+// import useVuelidate from '@vuelidate/core'
+// import { required, minLength } from '@vuelidate/validators'
 
 const props = defineProps({
   modalUpdateHandler: {
@@ -86,25 +85,29 @@ const rules = computed(() => {
   }
 })
 
-const inputChange = (content) => {
+const modalUpdate = () => {
+  console.log('update from login');
+}
+
+const changeInput = (content) => {
   console.log('login: ', content);
 }
 
-const v$ = useVuelidate( rules, formData)
+// const v$ = useVuelidate( rules, formData)
 
-const toRegistrationHandler = (option) => props.modalUpdateHandler(option)
+// const toRegistrationHandler = (option) => props.modalUpdateHandler(option)
 
-const submitForm = async () => {
-  const result = await v$.value.$validate()
+// const submitForm = async () => {
+//   // const result = await v$.value.$validate()
 
-  if(result) {
-    // Запрос к бд
-    alert('success');
-  } else {
-    alert('error');
-  }
+//   if(result) {
+//     // Запрос к бд
+//     alert('success');
+//   } else {
+//     alert('error');
+//   }
   
-}
+// }
 
 </script>
 

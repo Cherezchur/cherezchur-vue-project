@@ -36,7 +36,7 @@
             <section class="modal__body">
               <Login
                 v-if="modalOption === 'login'" 
-                :modalUpdateHandler="modalUpdate" 
+                @modal-update="modalUpdate" 
               />
               <Registration 
                 v-else-if="modalOption === 'registration'" 
@@ -56,7 +56,6 @@
 </template>
 
 <script setup>
-
 import {onMounted, onUnmounted, onUpdated} from 'vue';
 
 import Login from './Login.vue';
@@ -84,7 +83,10 @@ const props = defineProps({
 
 const modalClose = (modalOption) => props.closeModal(props.modalOption);
 
-const modalUpdate = (option) => props.modalUpdate(option)
+const modalUpdate = (option) => { 
+  console.log('update')
+  props.modalUpdate(option) 
+}
 
 const escCloseModal = (e) => {
   if (props.show && e.key === 'Escape') {

@@ -44,7 +44,7 @@
 <script setup>
   import {ref} from 'vue'
 
-  const formData = reactive({
+  const formData = ref({
     login: '',
     password: '',
     confirmPassword: ''

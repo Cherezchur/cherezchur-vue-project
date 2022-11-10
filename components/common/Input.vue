@@ -4,10 +4,10 @@
       :id="props.id"
       :name="props.name"
       :type="props.type"
-      v-model:="content"
+      v-model="content"
       :autocomplete="props.autocomplete"
       :placeholder="props.placeholder"
-      @input="$emit('inputChange', content)"
+      @input="$emit('change-input', content)"
     >
     <span class="input__valid">{{ valid ? 'yes' : 'no' }}</span>
   </div>
