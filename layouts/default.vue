@@ -21,7 +21,7 @@
 <script setup>
 import { ref } from 'vue';
 
-import Logo from '../components/common/Logo.vue';
+import Logo from '../components/elements/Logo.vue';
 import Menu from '../components/common/Menu.vue';
 import Modal from '../components/common/Modal.vue';
 

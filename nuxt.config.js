@@ -37,7 +37,6 @@ export default {
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: [
     '~/components',
-    { path: '~/components/common', extensions: ['vue'] }
   ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
@@ -52,5 +51,15 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    transpile: [
+      "vee-validate/dist/rules"
+    ],
+    /*
+      ** You can extend webpack config here
+      */
+    extend(config, ctx) {
+      // ...
+    }
   }
+  
 }

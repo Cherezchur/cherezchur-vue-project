@@ -1,11 +1,11 @@
 <template>
   <section class='gallery'>
-    <Logo />
     <h1>{{$route.params.gallery}}</h1>
   </section>
 </template>
 
 <script>
+
 import { validate } from 'json-schema';
 
 export default {
@@ -21,3 +21,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.gallery {
+  height: 1080px;
+  h1 {
+    margin: 0;
+  }
+}
+</style>

@@ -9,33 +9,17 @@
           :type="'text'"
           :autocomplete="'current-login'"  
           :placeholder="'Please write login'"
-          :valid="false"
-          @change-input="changeInput"
         />
-        <!-- <span
-          class="login__validation"
-          v-for="error in v$.login.$errors"
-          :key="error.$uid"
-        >
-        {{ error.$message }}
-        </span> -->
       </div>
       <div class="login__field">
         <label class="login__label visually-hidden" for="password">Password</label>
-        <input
-          id="password" 
-          name="password" 
-          type="password"
-          autocomplete="current-password"             
-          placeholder="Please write password" 
+        <Input
+          :id="'password'" 
+          :name="'password'"
+          :type="'password'"
+          :autocomplete="'current-password'"  
+          :placeholder="'Please write password'"
         />
-        <!-- <span
-          class="login__validation"
-          v-for="error in v$.password.$errors"
-          :key="error.$uid"
-        >
-          {{ error.$message }}
-        </span> -->
       </div>
       <button
         type="submit"
@@ -60,11 +44,9 @@
 </template>
 
 <script setup>
-import Input from './Input'
+import Input from '../../elements/Input.vue'
 
 import { ref, reactive, computed } from 'vue'
-// import useVuelidate from '@vuelidate/core'
-// import { required, minLength } from '@vuelidate/validators'
 
 const props = defineProps({
   modalUpdateHandler: {
@@ -78,35 +60,12 @@ const formData = reactive({
   password: ''
 })
 
-const rules = computed(() => {
-  return { 
-    login: { minLength: minLength(5) },
-    password: { required }
-  }
-})
-
 const modalUpdate = () => {
   console.log('update from login');
 }
 
-const changeInput = (content) => {
-  console.log('login: ', content);
-}
-
-// const v$ = useVuelidate( rules, formData)
-
-// const toRegistrationHandler = (option) => props.modalUpdateHandler(option)
-
-// const submitForm = async () => {
-//   // const result = await v$.value.$validate()
-
-//   if(result) {
-//     // Запрос к бд
-//     alert('success');
-//   } else {
-//     alert('error');
-//   }
-  
+// const change = (content) => {
+//   console.log('login: ', content);
 // }
 
 </script>

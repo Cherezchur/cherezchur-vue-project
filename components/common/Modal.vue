@@ -58,9 +58,9 @@
 <script setup>
 import {onMounted, onUnmounted, onUpdated} from 'vue';
 
-import Login from './Login.vue';
-import Logout from './Logout.vue'
-import Message from './Message.vue';
+import Login from './modal-forms/Login.vue';
+import Logout from './modal-forms/Logout.vue'
+import Message from './modal-forms/Message.vue';
 
 const props = defineProps({
   show: {
