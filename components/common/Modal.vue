@@ -15,7 +15,8 @@
               type="button"
               @click="modalClose(modalOption)"
             >
-            close
+             <span class="visually-hidden">Закрыть</span>
+             <span class="modal__close_element"></span>
             </button>
             <section class="modal__body">
               <Login
@@ -92,7 +93,8 @@ onUnmounted(() => {
   height: 100%;
   width: 100%;
 
-  //animation
+  /* modal-animation */
+
   &-enter,
   &-leave-to {
     opacity: 0;
@@ -136,7 +138,7 @@ onUnmounted(() => {
     padding: 20px 30px;
     border-radius: 5px;
     color: #000;
-    background-color: #fff;
+    background-color: white;
     transform: translate(0, 0);
     transition: all 0.3s ease;
     box-sizing: border-box;
@@ -155,8 +157,35 @@ onUnmounted(() => {
 
   &__close {
     position: absolute;
+    width: 15px;
+    height: 15px;
     top: 10px;
     right: 10px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    transition: 0.3s;
+    &:hover {
+      transform: rotate(90deg)
+    }
+    &_element:before,
+    &_element:after {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 0;
+      display: flex;
+      width: 15px;
+      height: 4px;
+      background-color: $contur-dark-purple;
+      border-radius: 2px;
+    }
+    &_element:before {
+      transform: rotate(45deg);
+    }
+    &_element:after {
+      transform: rotate(-45deg);
+    }
   }
 
   &__footer {
@@ -166,14 +195,5 @@ onUnmounted(() => {
     height: 80px;
     text-align: center;
   }
-}
-
-
-.modal-enter-active,
-.modal-leave-active {
-  transition: opacity 0.3s ease;
-}
-.modal {
-  
 }
 </style>

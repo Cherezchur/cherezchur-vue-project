@@ -11,7 +11,7 @@
           :name="'email'"
           :type="'email'"
           :autocomplete="'current-login'"  
-          :placeholder="'Please write email'"
+          :placeholder="'Email'"
           :rules="'required|min:5|email'"
         />
       </div>
@@ -22,11 +22,12 @@
           :name="'password'"
           :type="'password'"
           :autocomplete="'current-password'"  
-          :placeholder="'Please write password'"
+          :placeholder="'Password'"
           :rules="'required|minmax:5,36'"
         />
       </div>
       <button
+        class="login__submit"
         type="submit"
         @click.prevent="submitForm"
       >Login
@@ -77,6 +78,8 @@ const modalUpdate = () => {
 
 <style lang="scss" scoped>
 .login {
+  @include login-container;
+
   &__title {
     @include modal-title;
   }
@@ -88,10 +91,13 @@ const modalUpdate = () => {
       width: 100%;
     }
   }
-
-  &__validation {
-    font-size:10px;
-    color: red;
+  &__submit {
+    width: 50%;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius:5px;
+    background-color: $pa-gr_light-pink;
   }
 }
 </style>

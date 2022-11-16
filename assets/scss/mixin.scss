@@ -8,8 +8,11 @@
   // /* or 29px */
   // text-decoration-line: underline;
 }
-
 @mixin modal-title {
   font-weight: 700;
   color: $contur-dark-purple;
+}
+@mixin login-container {
+  width: 75%;
+  margin: 0 auto;
 }
