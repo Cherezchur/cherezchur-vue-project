@@ -1,14 +1,18 @@
 <template>
   <div class="login">
+    <h2 class="login__title">
+      Please log in
+    </h2>
     <form class="login__form" @submit.prevent="submitHandler">
       <div class="login__field">
         <label class="login__label visually-hidden" for="login">Login</label>
         <Input
-          :id="'login'" 
-          :name="'login'"
-          :type="'text'"
+          :id="'email'" 
+          :name="'email'"
+          :type="'email'"
           :autocomplete="'current-login'"  
-          :placeholder="'Please write login'"
+          :placeholder="'Please write email'"
+          :rules="'required|min:5|email'"
         />
       </div>
       <div class="login__field">
@@ -19,6 +23,7 @@
           :type="'password'"
           :autocomplete="'current-password'"  
           :placeholder="'Please write password'"
+          :rules="'required|minmax:5,36'"
         />
       </div>
       <button
@@ -72,6 +77,9 @@ const modalUpdate = () => {
 
 <style lang="scss" scoped>
 .login {
+  &__title {
+    @include modal-title;
+  }
   &__form {
     margin-bottom: 25px;
   }

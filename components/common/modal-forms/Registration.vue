@@ -1,5 +1,8 @@
 <template>
   <div class="registration">
+    <h2 class="registration__title">
+      Please registrer
+    </h2>
     <form v-on:submit.prevent action="#" method="POST">
       <input type="hidden" name="remember" value="true" />
       <div class="registration_fields">

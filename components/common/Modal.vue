@@ -10,29 +10,13 @@
             class="modal__content"
             @click.stop
           >
-            <section class="modal__header">
-              <button
-                class="modal__close"
-                type="button"
-                @click="modalClose(modalOption)"
-              >
-              close
-              </button>
-              <header class="modal__title">
-                <h2 v-if="modalOption === 'login'">
-                  Please log in
-                </h2>
-                <h2 v-else-if="modalOption === 'registration'">
-                  Please registrer
-                </h2>
-                <h2 v-else-if="modalOption === 'log out'">
-                  Please log in
-                </h2>
-                <h2 v-else-if="modalOption === 'message'">
-                  Please message write
-                </h2>
-              </header>
-            </section>
+            <button
+              class="modal__close"
+              type="button"
+              @click="modalClose(modalOption)"
+            >
+            close
+            </button>
             <section class="modal__body">
               <Login
                 v-if="modalOption === 'login'" 
@@ -40,9 +24,6 @@
               />
               <Registration 
                 v-else-if="modalOption === 'registration'" 
-              />
-              <Logout 
-                v-else-if="modalOption === 'logout'" 
               />
               <Message 
                 v-if="modalOption === 'message'" 
@@ -59,8 +40,8 @@
 import {onMounted, onUnmounted, onUpdated} from 'vue';
 
 import Login from './modal-forms/Login.vue';
-import Logout from './modal-forms/Logout.vue'
 import Message from './modal-forms/Message.vue';
+import RegistrationVue from './modal-forms/Registration.vue';
 
 const props = defineProps({
   show: {
@@ -84,7 +65,6 @@ const props = defineProps({
 const modalClose = (modalOption) => props.closeModal(props.modalOption);
 
 const modalUpdate = (option) => { 
-  console.log('update')
   props.modalUpdate(option) 
 }
 
@@ -125,15 +105,15 @@ onUnmounted(() => {
 
   &__backdrop {
     position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      transition: opacity 0.3s ease;
-      z-index: 5;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: opacity 0.3s ease;
+    z-index: 5;
   }
 
   &__container {
@@ -175,8 +155,8 @@ onUnmounted(() => {
 
   &__close {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 10px;
+    right: 10px;
   }
 
   &__footer {
