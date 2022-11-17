@@ -12,7 +12,6 @@
       :show="isShowModal"
       :modalOption="linkId"
       :closeModal="modalShowToogle"
-      :modalUpdate="modalUpdate"
     >
     </Modal>
   </div>
@@ -33,7 +32,6 @@ const modalShowToogle = (option) => {
   isShowModal.value = !isShowModal.value;
 }
 
-const modalUpdate = (option) => linkId.value = option;
 </script>
 
 <style lang='scss' scoped>

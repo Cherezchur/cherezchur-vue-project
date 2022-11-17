@@ -3,6 +3,7 @@
     <h2 class="login__title">
       Please log in
     </h2>
+    <button type="button">Login</button>
     <form class="login__form" @submit.prevent="submitHandler">
       <div class="login__field">
         <label class="login__label visually-hidden" for="login">Login</label>
@@ -39,11 +40,6 @@
           Forgot your password?
         </a>
       </div>
-      <button
-        type="button"
-        @click="$emit('modal-update', 'registration')"
-      >registration
-      </button>
     </div>
     
   </div>
@@ -53,13 +49,6 @@
 import Input from '../../elements/Input.vue'
 
 import { ref, reactive, computed } from 'vue'
-
-const props = defineProps({
-  modalUpdateHandler: {
-    type: Function,
-    default: () => ''
-  },
-})
 
 const formData = reactive({
   login: '',

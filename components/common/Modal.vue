@@ -19,16 +19,8 @@
              <span class="modal__close_element"></span>
             </button>
             <section class="modal__body">
-              <Login
-                v-if="modalOption === 'login'" 
-                @modal-update="modalUpdate" 
-              />
-              <Registration 
-                v-else-if="modalOption === 'registration'" 
-              />
-              <Message 
-                v-if="modalOption === 'message'" 
-              />
+              <EnterForms />
+              <Message v-if="modalOption === 'message'"/>
             </section>
           </div>
         </div>
@@ -40,9 +32,8 @@
 <script setup>
 import {onMounted, onUnmounted, onUpdated} from 'vue';
 
-import Login from './modal-forms/Login.vue';
 import Message from './modal-forms/Message.vue';
-import RegistrationVue from './modal-forms/Registration.vue';
+import EnterForms from './EnterForms.vue'
 
 const props = defineProps({
   show: {
@@ -56,18 +47,14 @@ const props = defineProps({
   closeModal: {
     type: Function,
     default: () => ''
-  },
-  modalUpdate: {
-    type: Function,
-    default: () => ''
   }
 })
 
 const modalClose = (modalOption) => props.closeModal(props.modalOption);
 
-const modalUpdate = (option) => { 
-  props.modalUpdate(option) 
-}
+// const modalUpdate = (option) => { 
+//   props.modalUpdate(option) 
+// }
 
 const escCloseModal = (e) => {
   if (props.show && e.key === 'Escape') {
@@ -105,6 +92,8 @@ onUnmounted(() => {
     transition: opacity 0.3s ease;
   }
 
+  // modal-containet
+
   &__backdrop {
     position: fixed;
     top: 0;
@@ -130,30 +119,24 @@ onUnmounted(() => {
 
   &__content {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    height: 40vh;
     width: 100%;
     max-width: 500px;
-    margin: 1.75rem auto;
+    margin: 10rem auto;
     padding: 20px 30px;
     border-radius: 5px;
     color: #000;
-    background-color: white;
+    background-color: $accent-pink;
     transform: translate(0, 0);
     transition: all 0.3s ease;
-    box-sizing: border-box;
   }
 
-  &__header {
-    position: relative;
-    margin-bottom: 25px;
-    text-align: center;
+  &__body {
+    margin: auto;
+    width: 100%;
   }
-
-  &__title h2 {
-    margin: 0;
-    font-size: 25px;
-  }
+  
+  // close-button
 
   &__close {
     position: absolute;
@@ -186,14 +169,6 @@ onUnmounted(() => {
     &_element:after {
       transform: rotate(-45deg);
     }
-  }
-
-  &__footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 80px;
-    text-align: center;
   }
 }
 </style>
