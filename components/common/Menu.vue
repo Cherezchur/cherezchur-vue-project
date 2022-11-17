@@ -185,7 +185,7 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
           span { 
             opacity: 1;
             width: 100px;
-            transform: translate(-60px, 0px);
+            transform: translate(-55px, 0px);
           }
         }
         &:nth-child(2) {
@@ -193,14 +193,14 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
           span { 
             opacity: 1;
             width: 120px;
-            transform: translate(-80px, 0px);
+            transform: translate(-75px, 0px);
           }
         }
         &:nth-child(3) {
           span { 
             opacity: 1;
             width: 110px;
-            transform: translate(-70px, 0px);
+            transform: translate(-65px, 0px);
           }
         }
       }

@@ -3,6 +3,7 @@
     <h2 class="login__title">
       Please log in
     </h2>
+    <button type="button">Login</button>
     <form class="login__form" @submit.prevent="submitHandler">
       <div class="login__field">
         <label class="login__label visually-hidden" for="login">Login</label>
@@ -11,7 +12,7 @@
           :name="'email'"
           :type="'email'"
           :autocomplete="'current-login'"  
-          :placeholder="'Please write email'"
+          :placeholder="'Email'"
           :rules="'required|min:5|email'"
         />
       </div>
@@ -22,11 +23,12 @@
           :name="'password'"
           :type="'password'"
           :autocomplete="'current-password'"  
-          :placeholder="'Please write password'"
+          :placeholder="'Password'"
           :rules="'required|minmax:5,36'"
         />
       </div>
       <button
+        class="login__submit"
         type="submit"
         @click.prevent="submitForm"
       >Login
@@ -38,11 +40,6 @@
           Forgot your password?
         </a>
       </div>
-      <button
-        type="button"
-        @click="$emit('modal-update', 'registration')"
-      >registration
-      </button>
     </div>
     
   </div>
@@ -52,13 +49,6 @@
 import Input from '../../elements/Input.vue'
 
 import { ref, reactive, computed } from 'vue'
-
-const props = defineProps({
-  modalUpdateHandler: {
-    type: Function,
-    default: () => ''
-  },
-})
 
 const formData = reactive({
   login: '',
@@ -77,6 +67,8 @@ const modalUpdate = () => {
 
 <style lang="scss" scoped>
 .login {
+  @include login-container;
+
   &__title {
     @include modal-title;
   }
@@ -88,10 +80,13 @@ const modalUpdate = () => {
       width: 100%;
     }
   }
-
-  &__validation {
-    font-size:10px;
-    color: red;
+  &__submit {
+    width: 50%;
+    padding: 10px;
+    color: $menu-icon;
+    border: none;
+    border-radius:5px;
+    background-color: $pa-gr_light-pink;
   }
 }
 </style>

@@ -8,26 +8,24 @@
         <div class="modal__container">
           <div 
             class="modal__content"
+            :class="{'modal__content_blue' : isChange}"
             @click.stop
           >
             <button
               class="modal__close"
               type="button"
+              :class="[props.modalOption, {'change':isChange}]"
               @click="modalClose(modalOption)"
             >
-            close
+             <span class="visually-hidden">Закрыть</span>
+             <span class="modal__close_element"></span>
             </button>
             <section class="modal__body">
-              <Login
-                v-if="modalOption === 'login'" 
-                @modal-update="modalUpdate" 
+              <EnterForms
+                v-if="modalOption === 'login'"
+                :changeForm="changeActiveForm"
               />
-              <Registration 
-                v-else-if="modalOption === 'registration'" 
-              />
-              <Message 
-                v-if="modalOption === 'message'" 
-              />
+              <Message v-else-if="modalOption === 'message'"/>
             </section>
           </div>
         </div>
@@ -37,11 +35,10 @@
 </template>
 
 <script setup>
-import {onMounted, onUnmounted, onUpdated} from 'vue';
+import { ref, reactive, onMounted, onUnmounted, onUpdated} from 'vue';
 
-import Login from './modal-forms/Login.vue';
 import Message from './modal-forms/Message.vue';
-import RegistrationVue from './modal-forms/Registration.vue';
+import EnterForms from './EnterForms.vue'
 
 const props = defineProps({
   show: {
@@ -55,18 +52,14 @@ const props = defineProps({
   closeModal: {
     type: Function,
     default: () => ''
-  },
-  modalUpdate: {
-    type: Function,
-    default: () => ''
   }
 })
 
-const modalClose = (modalOption) => props.closeModal(props.modalOption);
+let isChange = ref(false)
 
-const modalUpdate = (option) => { 
-  props.modalUpdate(option) 
-}
+const changeActiveForm = reactive(() => isChange.value = !isChange.value)
+
+const modalClose = (modalOption) => props.closeModal(props.modalOption);
 
 const escCloseModal = (e) => {
   if (props.show && e.key === 'Escape') {
@@ -92,7 +85,8 @@ onUnmounted(() => {
   height: 100%;
   width: 100%;
 
-  //animation
+  /* modal-animation */
+
   &-enter,
   &-leave-to {
     opacity: 0;
@@ -102,6 +96,8 @@ onUnmounted(() => {
   &-leave-active {
     transition: opacity 0.3s ease;
   }
+
+  // modal-containet
 
   &__backdrop {
     position: fixed;
@@ -128,52 +124,74 @@ onUnmounted(() => {
 
   &__content {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    position: relative;
+    height: 40vh;
     width: 100%;
     max-width: 500px;
-    margin: 1.75rem auto;
+    margin: 10rem auto;
     padding: 20px 30px;
-    border-radius: 5px;
+
     color: #000;
-    background-color: #fff;
-    transform: translate(0, 0);
-    transition: all 0.3s ease;
-    box-sizing: border-box;
+    border-radius: 5px;
+    background-color: $accent-pink;
+
+    transition: 0.3s ease-in-out;
+
+    &_blue {
+      background-color: $il-des_light-blue;
+    }
   }
 
-  &__header {
-    position: relative;
-    margin-bottom: 25px;
-    text-align: center;
+  &__body {
+    margin: auto;
+    width: 100%;
   }
-
-  &__title h2 {
-    margin: 0;
-    font-size: 25px;
-  }
+  
+  // close-button
 
   &__close {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+    transition: 0.3s;
+
+    &:hover {
+      transform: rotate(90deg)
+    }
+    &_element:before,
+    &_element:after {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 0;
+      display: flex;
+      width: 15px;
+      height: 4px;
+      background-color: $menu-icon;
+      border-radius: 2px;
+    }
+    &_element:before {
+      transform: rotate(45deg);
+    }
+    &_element:after {
+      transform: rotate(-45deg);
+    }
   }
 
-  &__footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 80px;
-    text-align: center;
+  .login {
+    top: -20%;
+    right: 40%;
   }
-}
-
-
-.modal-enter-active,
-.modal-leave-active {
-  transition: opacity 0.3s ease;
-}
-.modal {
-  
+  .message {
+    top: -10%;
+    right: 0%;
+  }
+  .change {
+    right: 0%;
+  }
 }
 </style>

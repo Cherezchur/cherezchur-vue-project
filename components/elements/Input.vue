@@ -1,6 +1,6 @@
 <template>
   <ValidationProvider :rules="props.rules" v-slot="{ classes, errors }">
-    <div class="inputField" :class="classes">
+    <div class="input-field" :class="classes">
       <input
       :id="props.id"
       :name="props.name"
@@ -9,7 +9,7 @@
       :autocomplete="props.autocomplete"
       :placeholder="props.placeholder"
     >
-    <span v-if="errors.length > 0" class="input__valid">{{ errors[0] }}</span>
+    <div v-if="errors.length > 0" class="input-field__valid">{{ errors[0] }}</div>
     </div>
   </ValidationProvider>
 </template>
@@ -64,26 +64,41 @@ extend('minmax', {
 
 extend('email', { 
   ...email, 
-  message: 'the {_field_} is not email adress'
+  message: 'is not email adress'
 })
 
 </script>
 
 <style lang="scss" scoped>
-.inputField {
+.input-field {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  padding-bottom: 20px;
   input {
+    color: $contur-dark-purple;
+    font-weight: 700;
+    font-size:14px;
+    width: 100%;
     border-radius: 5px;
     border: none;
-    background-color: $pa-gr_light-pink;
+    background-color: $accent-pink;
     padding: 10px;
-    width: 75%;
+    &:-webkit-autofill,
+    &:-webkit-autofill:focus {
+      transition: background-color 600000s 0s, color 600000s 0s;
+    }
   }
-  span { 
-
+  &__valid {
+    color: $accent-pink;
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    margin-right: -10px;
+    text-align: right;
+    font-size: 8px;
+    line-height: 14px;
   }
 }
 </style>>
