@@ -83,7 +83,7 @@ const modalUpdate = () => {
   &__submit {
     width: 50%;
     padding: 10px;
-    color: white;
+    color: $menu-icon;
     border: none;
     border-radius:5px;
     background-color: $pa-gr_light-pink;

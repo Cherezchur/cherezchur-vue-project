@@ -8,18 +8,21 @@
         <div class="modal__container">
           <div 
             class="modal__content"
+            :class="{'modal__content_blue' : isChange}"
             @click.stop
           >
             <button
               class="modal__close"
               type="button"
+              :class="{'modal__close_active' : isChange}"
               @click="modalClose(modalOption)"
             >
              <span class="visually-hidden">Закрыть</span>
              <span class="modal__close_element"></span>
             </button>
             <section class="modal__body">
-              <EnterForms />
+              <EnterForms  :changeForm="changeActiveForm"
+              />
               <Message v-if="modalOption === 'message'"/>
             </section>
           </div>
@@ -30,7 +33,7 @@
 </template>
 
 <script setup>
-import {onMounted, onUnmounted, onUpdated} from 'vue';
+import { ref, reactive, onMounted, onUnmounted, onUpdated} from 'vue';
 
 import Message from './modal-forms/Message.vue';
 import EnterForms from './EnterForms.vue'
@@ -50,11 +53,14 @@ const props = defineProps({
   }
 })
 
-const modalClose = (modalOption) => props.closeModal(props.modalOption);
+let isChange = ref(false)
 
-// const modalUpdate = (option) => { 
-//   props.modalUpdate(option) 
-// }
+const changeActiveForm = reactive(() => {
+  isChange.value = !isChange.value;
+  console.log('modal-change', isChange)
+})
+
+const modalClose = (modalOption) => props.closeModal(props.modalOption);
 
 const escCloseModal = (e) => {
   if (props.show && e.key === 'Escape') {
@@ -119,16 +125,22 @@ onUnmounted(() => {
 
   &__content {
     display: flex;
+    position: relative;
     height: 40vh;
     width: 100%;
     max-width: 500px;
     margin: 10rem auto;
     padding: 20px 30px;
-    border-radius: 5px;
+
     color: #000;
+    border-radius: 5px;
     background-color: $accent-pink;
-    transform: translate(0, 0);
-    transition: all 0.3s ease;
+
+    transition: 0.3s ease-in-out;
+
+    &_blue {
+      background-color: $il-des_light-blue;
+    }
   }
 
   &__body {
@@ -142,12 +154,16 @@ onUnmounted(() => {
     position: absolute;
     width: 15px;
     height: 15px;
-    top: 10px;
-    right: 10px;
+    top: -20%;
+    right: 40%;
     padding: 0;
     background: transparent;
     border: 0;
+    border-radius: 50%;
     transition: 0.3s;
+    &_active {
+      right: 0%;
+    }
     &:hover {
       transform: rotate(90deg)
     }
@@ -160,7 +176,7 @@ onUnmounted(() => {
       display: flex;
       width: 15px;
       height: 4px;
-      background-color: $contur-dark-purple;
+      background-color: $menu-icon;
       border-radius: 2px;
     }
     &_element:before {

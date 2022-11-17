@@ -8,18 +8,19 @@
         Please<br> log in
       </h2>
       <button 
-        class="enter-forms__button" 
-        type="button" 
-        @click="isActive = !isActive"
+        class="enter-forms__button enter-forms__button_blue" 
+        type="button"
+        @click="changeForm"
       >Login
       </button>
     </div>
+
     <div class="enter-forms__item">
       <h2 class="enter-forms__title">Not registered yet?</h2>
       <button 
-        class="enter-forms__button"
+        class="enter-forms__button enter-forms__button_pink"
         type="button" 
-        @click="isActive = !isActive" 
+        @click="changeForm"
       >Registration
     </button>
     </div>
@@ -28,7 +29,7 @@
 
     <div 
       class="enter-forms__forms"
-      :class="{'enter-forms__forms_active' : isActive}"
+      :class="{'enter-forms__forms_active' : isChange}"
     >
     </div>
 
@@ -43,7 +44,19 @@ import Registration from './modal-forms/Registration.vue';
 
 import { ref } from 'vue'
 
-const isActive = ref('false')
+const props = defineProps({
+  changeForm: {
+    type: Function,
+    default: () => []
+  }
+})
+
+let isChange = ref(false)
+
+const changeForm = () => {
+  props.changeForm();
+  isChange.value = !isChange.value
+}
 
 </script>
 
@@ -79,18 +92,18 @@ const isActive = ref('false')
   &__forms {
     position: absolute;
     top: -10%;
-    left: 40%;
+    left: 0;
 
     width: 60%;
     height: 120%;
 
     border-radius:5px;
-    background-color:white;
+    background-color: $menu-icon;
     box-shadow: 0 5px 45px rgba(0,0,0,0.2);
     transition: 0.3s ease-in-out;
 
     &_active {
-      left: 0;
+      left: 40%;
     }
   }
 
@@ -99,7 +112,12 @@ const isActive = ref('false')
     color: white;
     border: none;
     border-radius:5px;
-    background-color: $pa-gr_dark-pink;
+    &_blue {
+      background-color: $il-des_dark-blue;
+    }
+    &_pink {
+      background-color: $pa-gr_dark-pink;
+    }
   }
 }
 </style>
