@@ -14,16 +14,18 @@
             <button
               class="modal__close"
               type="button"
-              :class="{'modal__close_active' : isChange}"
+              :class="[props.modalOption, {'change':isChange}]"
               @click="modalClose(modalOption)"
             >
              <span class="visually-hidden">Закрыть</span>
              <span class="modal__close_element"></span>
             </button>
             <section class="modal__body">
-              <EnterForms  :changeForm="changeActiveForm"
+              <EnterForms
+                v-if="modalOption === 'login'"
+                :changeForm="changeActiveForm"
               />
-              <Message v-if="modalOption === 'message'"/>
+              <Message v-else-if="modalOption === 'message'"/>
             </section>
           </div>
         </div>
@@ -55,10 +57,7 @@ const props = defineProps({
 
 let isChange = ref(false)
 
-const changeActiveForm = reactive(() => {
-  isChange.value = !isChange.value;
-  console.log('modal-change', isChange)
-})
+const changeActiveForm = reactive(() => isChange.value = !isChange.value)
 
 const modalClose = (modalOption) => props.closeModal(props.modalOption);
 
@@ -154,16 +153,12 @@ onUnmounted(() => {
     position: absolute;
     width: 15px;
     height: 15px;
-    top: -20%;
-    right: 40%;
     padding: 0;
     background: transparent;
     border: 0;
     border-radius: 50%;
     transition: 0.3s;
-    &_active {
-      right: 0%;
-    }
+
     &:hover {
       transform: rotate(90deg)
     }
@@ -185,6 +180,18 @@ onUnmounted(() => {
     &_element:after {
       transform: rotate(-45deg);
     }
+  }
+
+  .login {
+    top: -20%;
+    right: 40%;
+  }
+  .message {
+    top: -10%;
+    right: 0%;
+  }
+  .change {
+    right: 0%;
   }
 }
 </style>
