@@ -14,12 +14,13 @@
             <button
               class="modal__close"
               type="button"
-              :class="[props.modalOption, {'change':isChange}]"
+              :class="[`modal__close_${props.modalOption}`, {'modal__close_change':isChange}]"
               @click="modalClose(modalOption)"
             >
-             <span class="visually-hidden">Закрыть</span>
-             <span class="modal__close_element"></span>
+              <span class="visually-hidden">Закрыть</span>
+              <span class="modal__close_element"></span>
             </button>
+
             <section class="modal__body">
               <EnterForms
                 v-if="modalOption === 'login'"
@@ -138,7 +139,7 @@ onUnmounted(() => {
     transition: 0.3s ease-in-out;
 
     &_blue {
-      background-color: $il-des_light-blue;
+      background-color: $il-des_light-blue;    
     }
   }
 
@@ -158,6 +159,18 @@ onUnmounted(() => {
     border: 0;
     border-radius: 50%;
     transition: 0.3s;
+
+    &_login {
+      top: -20%;
+      right: 40%;
+    }
+    &_message {
+      top: -10%;
+      right: 0%;
+    }
+    &_change {
+      right: 0%;
+    }
 
     &:hover {
       transform: rotate(90deg)
@@ -180,18 +193,6 @@ onUnmounted(() => {
     &_element:after {
       transform: rotate(-45deg);
     }
-  }
-
-  .login {
-    top: -20%;
-    right: 40%;
-  }
-  .message {
-    top: -10%;
-    right: 0%;
-  }
-  .change {
-    right: 0%;
   }
 }
 </style>
