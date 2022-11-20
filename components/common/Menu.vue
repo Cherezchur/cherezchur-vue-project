@@ -86,10 +86,21 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
     padding: 0;
     height: 40px;
     width: 40px;
-    background-color: $menu-bg;
+    background-color: $white-translucent;
     border-radius: 50%;
     border: none;
     z-index: 1;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: $accent-pink;
+
+      span,
+      span::before,
+      span::after {
+        background-color: $contur-dark-purple;
+      }
+    }
 
     span,
     span::before,
@@ -98,7 +109,7 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
       width: 5px;
       height: 5px;
       border-radius: 20px;
-      background-color: $menu-icon;
+      background-color: $white;
       top: calc(50% - 2.5px);
       left: calc(50% - 2.5px);
       transition: 0.3s;
@@ -140,33 +151,40 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
     left: 0;
     height: 40px;
     width: 40px;
-    background-color: $menu-icon;
     border-radius: 20px;
 
     &:nth-child(1) {
-        transition: 0.2s;
-      }
+      background-color: $il-des_dark-blue;
+      transition: 0.2s;
+    }
     &:nth-child(2) {
+      background-color: $pa-gr_dark-pink;
       transition: 0.35s;
     }
     &:nth-child(3) {
+      background-color: $ta-sk-le_dark-brown;
       transition: 0.5s;
     }
 
     span { 
       position: absolute;
       left: -10px;
-      opacity: 0;
-      z-index: 1;
-      width: 40px;
-      height: 40px;
-      background-color: $menu-icon;
-      border-radius: 20px;
-      transition: 0.3s;
+
       display: flex;
       align-items: center;
       text-align: start;
       padding-left: 10px;
+
+      color: $white-light-translucent;
+      
+      opacity: 0;
+      z-index: 1;
+
+      width: 40px;
+      height: 40px;
+
+      border-radius: 20px;
+      transition: 0.3s;
     }
 
     &_active {
@@ -185,6 +203,8 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
           span { 
             opacity: 1;
             width: 100px;
+            // color: $il-des_light-blue;
+            background-color: $il-des_dark-blue;
             transform: translate(-55px, 0px);
           }
         }
@@ -193,6 +213,8 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
           span { 
             opacity: 1;
             width: 120px;
+            // color: $pa-gr_light-pink;
+            background-color: $pa-gr_dark-pink;
             transform: translate(-75px, 0px);
           }
         }
@@ -200,6 +222,8 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
           span { 
             opacity: 1;
             width: 110px;
+            // color: $ta-sk-le_light-brown;
+            background-color: $ta-sk-le_dark-brown;
             transform: translate(-65px, 0px);
           }
         }

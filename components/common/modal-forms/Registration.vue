@@ -103,7 +103,7 @@ const formData = reactive({
     width: 100%;
     padding: 10px;
 
-    color: $menu-icon;
+    color: $white;
     
     border: none;
     border-radius:5px;

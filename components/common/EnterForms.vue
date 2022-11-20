@@ -98,7 +98,7 @@ const changeActiveForm = () => {
     overflow: hidden;
 
     border-radius:5px;
-    background-color: $menu-icon;
+    background-color: $white;
     box-shadow: 0 5px 45px rgba(0,0,0,0.2);
     transition: 0.3s ease-in-out;
   }
@@ -108,7 +108,7 @@ const changeActiveForm = () => {
     color: white;
     border: none;
     border-radius:5px;
-    background-color: $menu-icon;
+    background-color: $white;
     color: $contur-dark-purple;
   }
 

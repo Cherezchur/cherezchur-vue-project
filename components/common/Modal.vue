@@ -184,7 +184,7 @@ onUnmounted(() => {
       display: flex;
       width: 15px;
       height: 4px;
-      background-color: $menu-icon;
+      background-color: $white;
       border-radius: 2px;
     }
     &_element:before {
