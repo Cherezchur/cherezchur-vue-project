@@ -15,7 +15,7 @@
         @click.prevent="modalShowClick('login')"
       >
         <span>Login</span>
-        <img src='@/assets/image/icons/heart-disabled--dark.svg'>
+        <Icon :name='login-icon'/>
       </a>
       <a 
         href='#' 
@@ -44,6 +44,8 @@
 </template>
 
 <script setup>
+
+import Icon from './../elements/Icon.vue'
 import { ref} from 'vue';
 
 const props = defineProps({
@@ -103,8 +105,8 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
       height: 5px;
       border-radius: 20px;
       background-color: $white;
-      top: calc(50% - 2px);
-      left: calc(50% - 2px);
+      top: calc(50% - 2.5px);
+      left: calc(50% - 2.5px);
       transition: 0.3s;
     }
 
@@ -241,6 +243,8 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
       span::after {
         width: 4px;
         height: 4px;
+        top: calc(50% - 2px);
+        left: calc(50% - 2px);
       }
 
       span::before {
