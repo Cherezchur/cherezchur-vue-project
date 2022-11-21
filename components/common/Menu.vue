@@ -59,14 +59,14 @@ let timerId = ''
 const menuTrigger = () => {
   isActive.value = !isActive.value;
 
-  if(isActive.value) {
-    let timer = setTimeout(() => {
-      isActive.value = !isActive.value
-    }, 10000)
-    timerId = timer;
-  } else {
-    clearTimeout(timerId);
-  }
+  // if(isActive.value) {
+  //   let timer = setTimeout(() => {
+  //     isActive.value = !isActive.value
+  //   }, 10000)
+  //   timerId = timer;
+  // } else {
+  //   clearTimeout(timerId);
+  // }
 }
 
 const modalShowClick = (linkName) => props.modalShow(linkName);
@@ -103,8 +103,8 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
       height: 5px;
       border-radius: 20px;
       background-color: $white;
-      top: calc(50% - 2.5px);
-      left: calc(50% - 2.5px);
+      top: calc(50% - 2px);
+      left: calc(50% - 2px);
       transition: 0.3s;
     }
 
@@ -228,6 +228,44 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
       height: 25px;
       z-index: 2;
     }
+  }
+
+  @include sm-tablets {
+
+    &__control {
+      width: 30px;
+      height: 30px;
+
+      span,
+      span::before,
+      span::after {
+        width: 4px;
+        height: 4px;
+      }
+
+      span::before {
+        transform: translateX(-8px);
+      }
+      span::after {
+        transform: translateX(8px);
+      }
+
+      &_active {
+        span::before,
+        span::after {
+          border-radius: 2px;
+          width: 18px;
+        }
+        span::before {
+          transform: rotate(45deg) translate(-4.5px, 5px);
+        }
+        span::after {
+          transform: rotate(-45deg) translate(-5px, -4.5px);
+        }
+      }
+    }
+
+    
   }
 }
 </style>

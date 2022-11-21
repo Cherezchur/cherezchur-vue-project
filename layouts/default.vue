@@ -48,7 +48,7 @@ const modalShowToogle = (option) => {
     padding: 0 20px;
 
     @include sm-tablets {
-      padding: 0 20px 0 10px;
+      padding: 0 10px;
     }
   }
 }
