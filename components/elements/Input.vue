@@ -2,14 +2,20 @@
   <ValidationProvider :rules="props.rules" v-slot="{ classes, errors }">
     <div class="input-field" :class="classes">
       <input
-      :id="props.id"
-      :name="props.name"
-      :type="props.type"
-      v-model="content"
-      :autocomplete="props.autocomplete"
-      :placeholder="props.placeholder"
+        v-model="content"
+        class="input-field__input"
+        :id="props.id"
+        :name="props.name"
+        :type="props.type"
+        :autocomplete="props.autocomplete"
+        :placeholder="props.placeholder"
+        :class="`input-field__input_${props.fieldStyle}`"
     >
-    <div v-if="errors.length > 0" class="input-field__valid">{{ errors[0] }}</div>
+    <div 
+      v-if="errors.length > 0" 
+      class="input-field__valid"
+      :class="`input-field__valid_${props.fieldStyle}`"
+    >{{ errors[0] }}</div>
     </div>
   </ValidationProvider>
 </template>
@@ -17,7 +23,7 @@
 <script setup>
 import { ValidationProvider } from 'vee-validate'
 import { ref } from 'vue'
-import { extend, configure } from 'vee-validate'
+import { extend } from 'vee-validate'
 import { required, email } from 'vee-validate/dist/rules';
 
 const props = defineProps({
@@ -28,17 +34,10 @@ const props = defineProps({
   autocomplete: '', 
   placeholder: '',
   rules: '',
+  fieldStyle: '',
 })
 
 const content = ref('')
-
-configure({
-  classes: {
-    valid: 'is-valid',
-    invalid: 'is-invalid',
-    dirty: ['is-dirty', 'is-dirty'],
-  }
-})
 
 extend('required', {
   ...required,
@@ -59,7 +58,7 @@ extend('minmax', {
     return content.length >= min && content.length <= max
   },
   params: ['min', 'max'],
-  message: 'the minimum number of characters is {min}, the maximum is {max}'
+  message: 'the minimum is {min}, the maximum is {max}'
 })
 
 extend('email', { 
@@ -76,15 +75,22 @@ extend('email', {
   flex-direction: column;
   align-items: center;
   padding-bottom: 20px;
-  input {
-    color: $contur-dark-purple;
+  &__input {
     font-weight: 700;
     font-size:14px;
     width: 100%;
     border-radius: 5px;
     border: none;
-    background-color: $accent-pink;
     padding: 10px;
+
+    &_pink {
+      background-color: $accent-pink;
+      color: $contur-dark-purple;
+    }
+    &_blue {
+      background-color: $il-des_light-blue;
+      color: $contur-dark-purple;
+    }
     &:-webkit-autofill,
     &:-webkit-autofill:focus {
       transition: background-color 600000s 0s, color 600000s 0s;
@@ -95,10 +101,16 @@ extend('email', {
     position: absolute;
     bottom: 5px;
     width: 100%;
-    margin-right: -10px;
     text-align: right;
     font-size: 8px;
     line-height: 14px;
+
+    &_pink {
+      color: $pa-gr_dark-pink;
+    }
+    &_blue {
+      color: $il-des_dark-blue;
+    }
   }
 }
 </style>>
