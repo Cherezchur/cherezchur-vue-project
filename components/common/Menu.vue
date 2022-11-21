@@ -15,7 +15,7 @@
         @click.prevent="modalShowClick('login')"
       >
         <span>Login</span>
-        <Icon :name='login-icon'/>
+        <Icon :name="'login-icon'"/>
       </a>
       <a 
         href='#' 
@@ -24,7 +24,7 @@
         @click.prevent="modalShowClick('message')"
       >
         <span>Message</span>
-        <img src='@/assets/image/icons/heart-disabled--dark.svg'>
+        <!-- <img src='@/assets/image/icons/heart-disabled--dark.svg'> -->
       </a>
       <nuxt-link 
         no-prefetch 
@@ -37,7 +37,7 @@
         <span>
           Likes
         </span>
-        <img src='@/assets/image/icons/heart-disabled--dark.svg'>
+        <Icon :name="'heart-icon'"/>
       </nuxt-link>
     </nav>
   </div>
@@ -147,6 +147,20 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
     height: 40px;
     width: 40px;
     border-radius: 20px;
+    .login-icon {
+      margin-top: 2px;
+      width: 25px;
+      height: 25px;
+
+      fill: $white-light-translucent;
+    }
+
+    .heart-icon {
+      margin-top: 2px;
+      width: 30px;
+      height: 30px;
+      stroke: $white-light-translucent;
+    }
 
     &:nth-child(1) {
       background-color: $il-des_dark-blue;
