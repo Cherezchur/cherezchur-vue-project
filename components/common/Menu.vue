@@ -76,7 +76,6 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
 <style lang='scss' scoped>
 .menu {
 	margin-left: auto;
-	padding-right: 20px;
   display: flex;
   align-items: center;
   position: relative;
@@ -94,12 +93,6 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
 
     &:hover {
       background-color: $accent-pink;
-
-      span,
-      span::before,
-      span::after {
-        background-color: $contur-dark-purple;
-      }
     }
 
     span,
