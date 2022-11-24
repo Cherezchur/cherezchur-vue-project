@@ -249,6 +249,7 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
   @include sm-tablets {
 
     &__control {
+
       width: 30px;
       height: 30px;
 
@@ -280,6 +281,30 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
         span::after {
           transform: rotate(-45deg) translate(-5px, -4.5px);
         }
+      }
+    }
+
+    &__item {
+
+      width: 30px;
+      height: 30px;
+
+      &_active {
+        opacity: 1;
+        &:nth-child(1) {
+          transform: translate(-40px, -5px);
+        }
+        &:nth-child(2) {
+          transform: translate(-30px, 30px);
+        }
+        &:nth-child(3) {
+          transform: translate(5px, 45px);
+        }
+      }
+
+      .login-icon {
+        width: 20px;
+        height: 20px;
       }
     }
 
