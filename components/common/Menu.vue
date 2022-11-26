@@ -24,7 +24,7 @@
         @click.prevent="modalShowClick('message')"
       >
         <span>Message</span>
-        <!-- <img src='@/assets/image/icons/heart-disabled--dark.svg'> -->
+        <Icon :name="'message-icon'"/>
       </a>
       <nuxt-link 
         no-prefetch 
@@ -149,6 +149,15 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
     border-radius: 20px;
     .login-icon {
       margin-top: 2px;
+      width: 25px;
+      height: 25px;
+
+      fill: $white-light-translucent;
+    }
+
+    .message-icon {
+      margin-top: 2px;
+      margin-left: 2px;
       width: 25px;
       height: 25px;
 
@@ -303,6 +312,11 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
       }
 
       .login-icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      .message-icon {
         width: 20px;
         height: 20px;
       }
