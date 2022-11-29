@@ -194,5 +194,22 @@ onUnmounted(() => {
       transform: rotate(-45deg);
     }
   }
+
+  @include sm-tablets {
+    .modal {
+      &__body {
+        margin: 0;
+      }
+      &__content {
+        height:80vh;
+        width: 80vw;
+        margin: 2rem auto;
+      }
+      &__close {
+        top: -5%;
+        right: 0%;
+      }
+    }
+  }
 }
 </style>

@@ -7,46 +7,51 @@
 
       <!-- form -->
 
-      <form class="login__form" @submit.prevent="submitHandler">
-        <div class="login__field">
-          <label class="visually-hidden" for="login">Login</label>
-          <Input
-            :id="'email'" 
-            :name="'email'"
-            :type="'email'"
-            :autocomplete="'current-login'"  
-            :placeholder="'Email'"
-            :rules="'required|min:5|email'"
-            :fieldStyle="'pink'"
-          />
-        </div>
-        <div class="login__field">
-          <label class="visually-hidden" for="password">Password</label>
-          <Input
-            :id="'password'" 
-            :name="'password'"
-            :type="'password'"
-            :autocomplete="'current-password'"  
-            :placeholder="'Password'"
-            :rules="'required|minmax:5,36'"
-            :fieldStyle="'pink'"
-          />
-          <a class="login__password-recovery" href="#">
-            Forgot password?
-          </a>
-        </div>
-        <button
-          class="login__submit"
-          type="submit"
-          @click.prevent="submitForm"
-        >Login
-        </button>
-      </form>
+      <ValidationObserver v-slot="{ invalid }">
+        <form class="login__form" @submit.prevent="submitHandler">
+          <div class="login__field">
+            <label class="visually-hidden" for="login">Login</label>
+            <Input
+              :id="'email'" 
+              :name="'email'"
+              :type="'email'"
+              :autocomplete="'current-login'"  
+              :placeholder="'Email'"
+              :rules="'required|min:5|email'"
+              :fieldStyle="'pink'"
+            />
+          </div>
+          <div class="login__field">
+            <label class="visually-hidden" for="password">Password</label>
+            <Input
+              :id="'password1'" 
+              :name="'password'"
+              :type="'password'"
+              :autocomplete="'current-password'"  
+              :placeholder="'Password'"
+              :rules="'required|minmax:5,36'"
+              :fieldStyle="'pink'"
+            />
+            <a class="login__password-recovery" href="#">
+              Forgot password?
+            </a>
+          </div>
+          <button
+            class="login__submit"
+            type="submit"
+            :disabled="invalid"
+            @click.prevent="submitForm"
+          >Login
+          </button>
+        </form>
+      </ValidationObserver>
+
     </div>
   </transition>
 </template>
 
 <script setup>
+import { ValidationObserver } from 'vee-validate'
 import Input from '../../elements/Input.vue'
 
 import { ref, reactive, computed } from 'vue'
@@ -55,14 +60,6 @@ const formData = reactive({
   login: '',
   password: ''
 })
-
-const modalUpdate = () => {
-  console.log('update from login');
-}
-
-// const change = (content) => {
-//   console.log('login: ', content);
-// }
 
 </script>
 
@@ -122,6 +119,10 @@ const modalUpdate = () => {
     border: none;
     border-radius:5px;
     background-color: $pa-gr_dark-pink;
+
+    &:disabled {
+      opacity: 0.7;
+    }
   }
 }
 </style>
