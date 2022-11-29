@@ -34,6 +34,7 @@
       <Login v-show="isChange === false"/>
       <Registration v-show="isChange === true"/>
     </div>
+    
   </section>
 </template>
 
@@ -114,6 +115,45 @@ const changeActiveForm = () => {
 
   .active {
     left: 40%;
+  }
+
+  @include sm-tablets {
+
+    flex-direction: column;
+    height: 100%;
+    .modal {
+      &__content {
+        height:60vh;
+      }
+    }
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      justify-content:space-between;
+
+      width: 70%;
+      margin: 0 auto;
+
+      &:nth-child(1) {
+        padding-right: 0;
+      }
+      &:nth-child(2) {
+        padding-left: 0;
+      }
+    }
+
+    &__forms {
+      top: 0;
+      left: -5%;
+      width: 110%;
+      height: 75%;
+    }
+
+    .active {
+      top: 25%;
+      left: -5%;
+    }
   }
 }
 </style>

@@ -5,52 +5,64 @@
         Registration
       </h2>
 
-      <form class="registration__form" @submit.prevent>
-        <input type="hidden" name="remember" value="true" />
+      <!-- form -->
 
-        <div class="registration__field">
-          <label class="visually-hidden" for="login">Email</label>
-          <Input
-            :id="'email'" 
-            :name="'email'"
-            :type="'email'"
-            :autocomplete="'current-login'"  
-            :placeholder="'Email'"
-            :rules="'required|min:5|email'"
-            :fieldStyle="'blue'"
-          />
-        </div>
-        <div>
-          <label class="visually-hidden" for="password">Password</label>
-          <Input
-            :id="'password'" 
-            :name="'password'"
-            :type="'password'"
-            :placeholder="'Password'"
-            :rules="'required|minmax:5,36'"
-            :fieldStyle="'blue'"
-          />
-        </div>
-        <div>
-          <label class="visually-hidden" for="confirmPassword">Confirm password</label>
-          <Input
-            :id="'confirmPassword'" 
-            :name="'confirmPassword'"
-            :type="'confirmPassword'"
-            :placeholder="'Confirm password'"
-            :rules="'required|minmax:5,36'"
-            :fieldStyle="'blue'"
-          />
-        </div>
-      </form>
-      <button class="registration__submit" @click.prevent="postRegisterForm">
-        Register
-      </button>
+      <ValidationObserver v-slot="{ invalid }">
+
+        <form class="registration__form" @submit.prevent>
+          <input type="hidden" name="remember" value="true" />
+
+          <div class="registration__field">
+            <label class="visually-hidden" for="login">Email</label>
+            <Input
+              :id="'email'" 
+              :name="'email'"
+              :type="'email'"
+              :autocomplete="'current-login'"  
+              :placeholder="'Email'"
+              :rules="'required|min:5|email'"
+              :fieldStyle="'blue'"
+            />
+          </div>
+          <div>
+            <label class="visually-hidden" for="password">Password</label>
+            <Input
+              :id="'password'" 
+              :name="'password'"
+              :type="'password'"
+              :placeholder="'Password'"
+              :rules="'required|minmax:5,36'"
+              :fieldStyle="'blue'"
+            />
+          </div>
+          <div>
+            <label class="visually-hidden" for="confirmPassword">Confirm password</label>
+            <Input
+              :id="'confirmPassword'" 
+              :name="'confirmPassword'"
+              :type="'confirmPassword'"
+              :placeholder="'Confirm password'"
+              :rules="'required|minmax:5,36'"
+              :fieldStyle="'blue'"
+            />
+          </div>
+          <button 
+            class="registration__submit" 
+            @click.prevent="postRegisterForm"
+            :disabled="invalid"
+          >
+            Register
+          </button>
+        </form>
+      </ValidationObserver>
+
     </div>
+
   </transition>
 </template>
 
 <script setup>
+import { ValidationObserver } from 'vee-validate'
 import Input from '../../elements/Input.vue'
 
 import {reactive} from 'vue'
@@ -68,10 +80,8 @@ const formData = reactive({
   @include form-container;
 
   position: absolute;
-  top: 20%;
-
-  left: 0;
   top: 10%;
+  left: 0;
 
   /* animation */
 
@@ -108,6 +118,10 @@ const formData = reactive({
     border: none;
     border-radius:5px;
     background-color: $il-des_dark-blue;
+
+    &:disabled {
+      opacity: 0.7;
+    }
   }
 }
 </style>
