@@ -15,7 +15,7 @@
         @click.prevent="modalShowClick('login')"
       >
         <span>Login</span>
-        <img src='@/assets/image/icons/heart-disabled--dark.svg'>
+        <Icon :name="'login-icon'"/>
       </a>
       <a 
         href='#' 
@@ -24,7 +24,7 @@
         @click.prevent="modalShowClick('message')"
       >
         <span>Message</span>
-        <img src='@/assets/image/icons/heart-disabled--dark.svg'>
+        <Icon :name="'message-icon'"/>
       </a>
       <nuxt-link 
         no-prefetch 
@@ -37,13 +37,15 @@
         <span>
           Likes
         </span>
-        <img src='@/assets/image/icons/heart-disabled--dark.svg'>
+        <Icon :name="'heart-icon'"/>
       </nuxt-link>
     </nav>
   </div>
 </template>
 
 <script setup>
+
+import Icon from './../elements/Icon.vue'
 import { ref} from 'vue';
 
 const props = defineProps({
@@ -103,8 +105,8 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
       height: 5px;
       border-radius: 20px;
       background-color: $white;
-      top: calc(50% - 2px);
-      left: calc(50% - 2px);
+      top: calc(50% - 2.5px);
+      left: calc(50% - 2.5px);
       transition: 0.3s;
     }
 
@@ -145,6 +147,29 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
     height: 40px;
     width: 40px;
     border-radius: 20px;
+    .login-icon {
+      margin-top: 2px;
+      width: 25px;
+      height: 25px;
+
+      fill: $white-light-translucent;
+    }
+
+    .message-icon {
+      margin-top: 2px;
+      margin-left: 2px;
+      width: 25px;
+      height: 25px;
+
+      fill: $white-light-translucent;
+    }
+
+    .heart-icon {
+      margin-top: 2px;
+      width: 30px;
+      height: 30px;
+      stroke: $white-light-translucent;
+    }
 
     &:nth-child(1) {
       background-color: $il-des_dark-blue;
@@ -233,6 +258,7 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
   @include sm-tablets {
 
     &__control {
+
       width: 30px;
       height: 30px;
 
@@ -241,6 +267,8 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
       span::after {
         width: 4px;
         height: 4px;
+        top: calc(50% - 2px);
+        left: calc(50% - 2px);
       }
 
       span::before {
@@ -262,6 +290,35 @@ const modalShowClick = (linkName) => props.modalShow(linkName);
         span::after {
           transform: rotate(-45deg) translate(-5px, -4.5px);
         }
+      }
+    }
+
+    &__item {
+
+      width: 30px;
+      height: 30px;
+
+      &_active {
+        opacity: 1;
+        &:nth-child(1) {
+          transform: translate(-40px, -5px);
+        }
+        &:nth-child(2) {
+          transform: translate(-30px, 30px);
+        }
+        &:nth-child(3) {
+          transform: translate(5px, 45px);
+        }
+      }
+
+      .login-icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      .message-icon {
+        width: 20px;
+        height: 20px;
       }
     }
 
