@@ -1,6 +1,9 @@
 <template>
   <nuxt-link no-prefetch class='logo-link' to='/' title="to main page">
-		<Icon :name="'logo'" />
+		<Icon 
+			:name="'logo'"
+			:width="'60px'"
+		/>
 	</nuxt-link>
 </template>
 

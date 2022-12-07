@@ -15,7 +15,7 @@
         @click.prevent="modalShowClick('login')"
       >
         <span>Login</span>
-        <Icon :name="'login-icon'"/>
+        <Icon :name="'login'" :width="'25px'" :fill="'rgba(255, 255, 255, 0.8)'"/>
       </a>
       <a 
         href='#' 
@@ -24,7 +24,7 @@
         @click.prevent="modalShowClick('message')"
       >
         <span>Message</span>
-        <Icon :name="'message-icon'"/>
+        <Icon :name="'message'" :width="'25px'" :fill="'rgba(255, 255, 255, 0.8)'"/>
       </a>
       <nuxt-link 
         no-prefetch 
@@ -37,7 +37,7 @@
         <span>
           Likes
         </span>
-        <Icon :name="'heart-icon'"/>
+        <Icon :name="'like'" :width="'25px'" :fill="'rgba(255, 255, 255, 0.8)'"/>
       </nuxt-link>
     </nav>
   </div>
