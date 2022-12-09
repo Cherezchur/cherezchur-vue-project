@@ -45,6 +45,11 @@ const modalShowToogle = (option) => {
     justify-content: space-between;
     position: fixed;
     width: 100%;
+    padding: 0 20px;
+
+    @include sm-tablets {
+      padding: 0 10px;
+    }
   }
 }
 </style>

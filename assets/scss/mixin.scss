@@ -12,7 +12,9 @@
   font-weight: 700;
   color: $contur-dark-purple;
 }
-@mixin login-container {
-  width: 75%;
+@mixin form-container {
+  width: 100%;
   margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
 }

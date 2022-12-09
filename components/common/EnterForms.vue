@@ -5,12 +5,12 @@
 
     <div class="enter-forms__item">
       <h2 class="enter-forms__title">
-        Please<br> log in
+        Login
       </h2>
       <button 
         class="enter-forms__button enter-forms__button_blue" 
         type="button"
-        @click="changeForm"
+        @click="changeActiveForm"
       >Login
       </button>
     </div>
@@ -20,7 +20,7 @@
       <button 
         class="enter-forms__button enter-forms__button_pink"
         type="button" 
-        @click="changeForm"
+        @click="changeActiveForm"
       >Registration
     </button>
     </div>
@@ -29,12 +29,11 @@
 
     <div 
       class="enter-forms__forms"
-      :class="{'enter-forms__forms_active' : isChange}"
+      :class="{'active' : isChange}"
     >
+      <Login v-show="isChange === false"/>
+      <Registration v-show="isChange === true"/>
     </div>
-
-    <!-- <Login />
-    <Registration /> -->
   </section>
 </template>
 
@@ -53,7 +52,7 @@ const props = defineProps({
 
 let isChange = ref(false)
 
-const changeForm = () => {
+const changeActiveForm = () => {
   props.changeForm();
   isChange.value = !isChange.value
 }
@@ -96,15 +95,12 @@ const changeForm = () => {
 
     width: 60%;
     height: 120%;
+    overflow: hidden;
 
     border-radius:5px;
-    background-color: $menu-icon;
+    background-color: $white;
     box-shadow: 0 5px 45px rgba(0,0,0,0.2);
     transition: 0.3s ease-in-out;
-
-    &_active {
-      left: 40%;
-    }
   }
 
   &__button {
@@ -112,12 +108,12 @@ const changeForm = () => {
     color: white;
     border: none;
     border-radius:5px;
-    &_blue {
-      background-color: $il-des_dark-blue;
-    }
-    &_pink {
-      background-color: $pa-gr_dark-pink;
-    }
+    background-color: $white;
+    color: $contur-dark-purple;
+  }
+
+  .active {
+    left: 40%;
   }
 }
 </style>
