@@ -4,6 +4,13 @@
   </section>
 </template>
 
+
+<script setup>
+
+</script>
+
+
+
 <style lang='scss' scoped>
 .slider {
   min-height: 100vh;

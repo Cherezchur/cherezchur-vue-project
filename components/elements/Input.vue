@@ -23,8 +23,8 @@
 <script setup>
 import { ValidationProvider } from 'vee-validate'
 import { ref } from 'vue'
-import { extend } from 'vee-validate'
-import { required, email } from 'vee-validate/dist/rules';
+import { defineRule } from 'vee-validate'
+// import { required, email } from 'vee-validate/dist/rules';
 
 const props = defineProps({
   id: '', 

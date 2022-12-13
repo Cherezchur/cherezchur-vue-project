@@ -2,9 +2,7 @@
   <div class='layout_container'>
     <header class='layout_header'>
       <Logo />
-      <Menu 
-        :modalShow='modalShowToogle'
-      />
+      <Menu :modalShow="modalShowToogle"></Menu> 
     </header>
     <nuxt />
     <Modal 
@@ -12,8 +10,7 @@
       :show="isShowModal"
       :modalOption="linkId"
       :closeModal="modalShowToogle"
-    >
-    </Modal>
+    />
   </div>
 </template>
 
